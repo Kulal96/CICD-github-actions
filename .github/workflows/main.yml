@@ -1,0 +1,30 @@
+name: 'Test-cicd'
+
+on: 
+    workflow_dispatch:
+    push:
+      branches:
+        - main
+jobs:
+    Build_and_Test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v3
+
+            - name: SetUp Nodejs
+              uses: actions/setup-node@v3
+              with:
+                node-version: 18
+            
+            - name: Install Dependencies
+              uses: npm ci
+            
+            - name: Run test
+              uses: npm test
+             
+
+
+
+
+    
